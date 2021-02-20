@@ -14,10 +14,6 @@ import io.ktor.utils.io.core.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import okhttp3.internal.http2.StreamResetException
-import xyz.cssxsh.mirai.plugin.data.TextToSpeechConfig.cacheDir
-import xyz.cssxsh.mirai.plugin.data.TextToSpeechConfig.defaultLanguage
-import xyz.cssxsh.mirai.plugin.data.TextToSpeechConfig.defaultSpeech
-import xyz.cssxsh.mirai.plugin.data.TextToSpeechConfig.defaultType
 import java.io.EOFException
 import java.io.File
 import java.net.ConnectException
@@ -81,6 +77,8 @@ object TextToSpeechTool {
 
     private const val BAIDU_LANGUAGE_DETECT = "https://fanyi.baidu.com/langdetect"
 
+    private const val DEFAULT_LANGUAGE = "zh"
+
     private const val CONVERT_BATCH = "https://s19.aconvert.com/convert/convert-batch.php"
 
     private const val CONVERT_RESULT = "https://s19.aconvert.com/convert/p3r68-cdx67/"
@@ -101,13 +99,13 @@ object TextToSpeechTool {
         @SerialName("msg")
         val message: String,
         @SerialName("lan")
-        val language: String
+        val language: String? = null
     )
 
     private suspend fun getBaiduLanguageDetect(text: String): String = useHttpClient { client ->
         client.get<LanguageDetect>(BAIDU_LANGUAGE_DETECT) {
             parameter("query", text)
-        }.takeIf { it.message == "success" }?.language ?: defaultLanguage
+        }.takeIf { it.message == "success" }?.language ?: DEFAULT_LANGUAGE
     }
 
     private suspend fun getBaiduTTS(text: String, speed: Int, language: String): ByteArray = useHttpClient { client ->
@@ -118,9 +116,6 @@ object TextToSpeechTool {
             parameter("source", "web")
         }
     }
-
-    private suspend fun getSpeechOfMp3(text: String, speed: Int): ByteArray =
-        getBaiduTTS(text = text, speed = speed, language = getBaiduLanguageDetect(text))
 
     @Serializable
     private data class ConvertResult(
@@ -158,24 +153,36 @@ object TextToSpeechTool {
 
     suspend fun getSpeechFile(
         text: String,
-        speed: Int = defaultSpeech,
-        type: SpeechFileType = defaultType,
-        dir: File = cacheDir
+        speed: Int,
+        type: SpeechFileType,
+        dir: File,
+        language: String? = null,
     ): File = dir.resolve("${text.encodeBase64()}.$speed.${type.format}").apply {
         if (exists().not()) {
-            writeBytes(
-                when(type) {
-                    SpeechFileType.AMR -> {
-                        getSpeechFile(text = text, speed = speed, type = SpeechFileType.MP3, dir = dir).convertTo(type.format)
-                    }
-                    SpeechFileType.MP3 -> {
-                        getSpeechOfMp3(text = text, speed = speed)
-                    }
-                    SpeechFileType.SILK -> {
-                        getSpeechFile(text = text, speed = speed, type = SpeechFileType.MP3, dir = dir).convertTo(type.format)
-                    }
-                }
-            )
+            when (type) {
+                SpeechFileType.AMR -> getSpeechFile(
+                    text = text,
+                    speed = speed,
+                    type = SpeechFileType.MP3,
+                    dir = dir,
+                    language = language
+                ).convertTo(type.format)
+                SpeechFileType.MP3 -> getBaiduTTS(
+                    text = text,
+                    speed = speed,
+                    language = language ?: getBaiduLanguageDetect(text)
+                )
+                SpeechFileType.SILK -> getSpeechFile(
+                    text = text,
+                    speed = speed,
+                    type = SpeechFileType.MP3,
+                    dir = dir,
+                    language = language
+                ).convertTo(type.format)
+
+            }.let {
+                writeBytes(it)
+            }
         }
     }
 }

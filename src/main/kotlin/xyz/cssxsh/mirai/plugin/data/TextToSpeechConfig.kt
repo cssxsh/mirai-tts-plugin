@@ -16,9 +16,6 @@ object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeechConfig") {
     @ValueName("text_max_length")
     val textMaxLength: Int by value(256)
 
-    @ValueName("default_language")
-    val defaultLanguage: String by value("zh")
-
     @ValueName("default_speech")
     val defaultSpeech: Int by value(5)
 
