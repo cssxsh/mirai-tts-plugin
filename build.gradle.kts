@@ -1,21 +1,46 @@
 plugins {
-    val kotlinVersion = "1.4.21"
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.serialization") version kotlinVersion
+    kotlin("jvm") version Versions.kotlin
+    kotlin("plugin.serialization") version Versions.kotlin
 
-    id("net.mamoe.mirai-console") version "2.0-RC" // mirai-console version
+    id("net.mamoe.mirai-console") version Versions.mirai
 }
 
-mirai {
-    coreVersion = "2.0-RC" // mirai-core version
-}
-
-group = "org.example"
-version = "0.1.0"
+group = "xyz.cssxsh.mirai.plugin"
+version = "0.1.0-dev-1"
 
 repositories {
     mavenLocal()
+    maven(url = "https://maven.aliyun.com/repository/releases")
+    maven(url = "https://mirrors.huaweicloud.com/repository/maven")
+    // bintray dl.bintray.com -> bintray.proxy.ustclug.org
+    maven(url = "https://bintray.proxy.ustclug.org/him188moe/mirai/")
+    maven(url = "https://bintray.proxy.ustclug.org/kotlin/kotlin-dev")
+    maven(url = "https://bintray.proxy.ustclug.org/kotlin/kotlinx/")
+    // central
+    maven(url = "https://maven.aliyun.com/repository/central")
     mavenCentral()
+    // jcenter
+    maven(url = "https://maven.aliyun.com/repository/jcenter")
     jcenter()
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
+    gradlePluginPortal()
+}
+
+kotlin {
+    sourceSets {
+        all {
+            languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+        }
+    }
+}
+
+dependencies {
+    implementation(ktor("client-serialization", Versions.ktor))
+    implementation(ktor("client-encoding", Versions.ktor))
+    testImplementation(junit("api", Versions.junit))
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }
