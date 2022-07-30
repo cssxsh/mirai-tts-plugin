@@ -21,9 +21,14 @@ internal class MiraiTextToSpeechTest {
         File("./test/temp.mp3")
             .writeBytes(MiraiTextToSpeech.speech(text = "阿"))
 
-        val res = File("./test/temp.mp3")
-            .toExternalResource()
-            .use { AudioToSilkService.convert(it) }
+        val res = try {
+           File("./test/temp.mp3")
+                .toExternalResource()
+                .use { AudioToSilkService.convert(it) }
+        } catch (cause: Throwable) {
+            logger.error(cause)
+            throw cause
+        }
 
         res.use {
             File("./test/temp.silk").writeBytes(it.inputStream().readAllBytes())
