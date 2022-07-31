@@ -15,12 +15,6 @@ public class TranslateTextToSpeech(public val client: BaiduApiClient<*>) {
         private const val DEFAULT_LANGUAGE = "zh"
     }
 
-    public enum class SpeechFileType(public val format: String) {
-        MP3(format = "mp3"),
-        AMR(format = "amr"),
-        SILK(format = "silk");
-    }
-
     @Serializable
     private data class LanguageDetect(
         @SerialName("error")
