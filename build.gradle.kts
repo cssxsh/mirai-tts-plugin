@@ -7,7 +7,7 @@ plugins {
     id("me.him188.kotlin-jvm-blocking-bridge") version "2.1.0-162.1"
 }
 
-group = "xyz.cssxsh.mirai.plugin"
+group = "xyz.cssxsh.mirai"
 version = "1.0.0-dev-1"
 
 mavenCentralPublish {
