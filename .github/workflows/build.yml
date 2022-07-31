@@ -36,9 +36,10 @@ jobs:
         with:
           java-version: 11
       
-      # Validate Gradle Wrapper
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.3
+      # setup FFMPEG
+      - name: setup FFMPEG
+        uses: FedericoCarboni/setup-ffmpeg@v1
+        id: setup-ffmpeg
         
       # Build
       - name: Make gradlew executable
