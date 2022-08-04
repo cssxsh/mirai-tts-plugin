@@ -9,7 +9,7 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 
 本插件使用的TTS API 返回的是 mp3 格式的语音，非手机端接收到语音可能播放不正常,  
 你可以安装 [Mirai Silk Converter](https://github.com/project-mirai/mirai-silk-converter) 进行自动转码，解决mp3格式的问题。  
-没有配置 AIP APP 信息时，将使用百度百科的接口，此接口部分 `person` 配置无效。  
+没有配置 AIP APP 信息时，将使用百度百科的接口，此接口只支持部分 `person` 。  
 如需要更多的功能选择，请到 [baidu aip](https://ai.baidu.com/ai-doc/SPEECH/qknh9i8ed#%E6%88%90%E4%B8%BA%E5%BC%80%E5%8F%91%E8%80%85)  申请新应用和免费额度。
 
 
@@ -31,9 +31,9 @@ mirai {
 
 ## 管理指令
 
-* `/tts test` 测试 tts
+* `/tts test <person> <speed> <pitch> <volume>` 测试 tts
     ```
-    /tts test
+    /tts test 4100 5 5 5
     你好 世界
     ```
 * `/tts reload` 重载 aip 配置
@@ -50,5 +50,5 @@ mirai {
     * speed: 语速 0~15
     * pitch: 语调 0~15
     * volume: 音量 0~15
-    * person: 音库
+    * person: 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 4100, 4106`
     * format: 格式

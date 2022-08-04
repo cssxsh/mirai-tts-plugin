@@ -5,7 +5,7 @@ import net.mamoe.mirai.contact.*
 import net.mamoe.mirai.message.data.*
 import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
 import xyz.cssxsh.mirai.tts.*
-import xyz.cssxsh.mirai.tts.data.TextToSpeechConfig
+import xyz.cssxsh.mirai.tts.data.*
 
 public object TextToSpeechCommand : CompositeCommand(
     owner = MiraiTextToSpeechPlugin,
@@ -15,13 +15,18 @@ public object TextToSpeechCommand : CompositeCommand(
 
     @SubCommand
     @Description("测试 tts ")
-    public suspend fun CommandSenderOnMessage<*>.test() {
+    public suspend fun CommandSenderOnMessage<*>.test(person: Int, speed: Int, pitch: Int, volume: Int) {
         val receiver = subject as? AudioSupported ?: return
 
         val text = fromEvent.message.contentToString().substringAfter('\n')
 
         val audio = try {
-            MiraiTextToSpeech.speech(text = text)
+            MiraiTextToSpeech.speech(text = text) {
+                this.person = person
+                this.speed = speed
+                this.pitch = pitch
+                this.volume = volume
+            }
                 .toExternalResource()
                 .use { receiver.uploadAudio(it) }
         } catch (cause: Throwable) {

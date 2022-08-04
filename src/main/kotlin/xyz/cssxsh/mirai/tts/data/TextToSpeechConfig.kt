@@ -23,5 +23,5 @@ public object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeech"), BaiduAu
 
     @ValueName("option")
     @ValueDescription("TTS 选项")
-    public val option: SpeechOption by value()
+    public val option: SpeechOption by value(SpeechOption(person = SpeechPerson.Base.MatureFemale))
 }
