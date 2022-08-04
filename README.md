@@ -50,5 +50,5 @@ mirai {
     * speed: 语速 0~15
     * pitch: 语调 0~15
     * volume: 音量 0~15
-    * person: 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 4100, 4106`
+    * person: 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 106, 4100, 4106`
     * format: 格式
