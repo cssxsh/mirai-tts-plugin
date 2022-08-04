@@ -9,7 +9,7 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 
 本插件使用的TTS API 返回的是 mp3 格式的语音，非手机端接收到语音可能播放不正常,  
 你可以安装 [Mirai Silk Converter](https://github.com/project-mirai/mirai-silk-converter) 进行自动转码，解决mp3格式的问题。  
-没有配置 AIP APP 信息时，将使用百度翻译的接口，此接口只有 `speed` 配置有效。  
+没有配置 AIP APP 信息时，将使用百度百科的接口，此接口部分 `person` 配置无效。  
 如需要更多的功能选择，请到 [baidu aip](https://ai.baidu.com/ai-doc/SPEECH/qknh9i8ed#%E6%88%90%E4%B8%BA%E5%BC%80%E5%8F%91%E8%80%85)  申请新应用和免费额度。
 
 

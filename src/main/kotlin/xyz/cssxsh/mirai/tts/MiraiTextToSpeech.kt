@@ -35,7 +35,7 @@ public object MiraiTextToSpeech : BaiduAipClient(config = TextToSpeechConfig), C
         }
     }
     private val aip = AipTextToSpeech(client = this)
-    private val translate = TranslateTextToSpeech(client = this)
+    private val free = FreeTextToSpeech(client = this)
 
     public val ready: Boolean get() = TextToSpeechConfig.secretKey.isNotEmpty()
 
@@ -48,7 +48,7 @@ public object MiraiTextToSpeech : BaiduAipClient(config = TextToSpeechConfig), C
         return if (ready) {
             aip.handle(text = text, option = option)
         } else {
-            translate.handle(text = text, option = option)
+            free.handle(text = text, option = option)
         }
     }
 }
