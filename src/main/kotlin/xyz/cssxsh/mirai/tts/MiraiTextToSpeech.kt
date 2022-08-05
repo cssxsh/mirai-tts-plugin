@@ -42,13 +42,21 @@ public object MiraiTextToSpeech : BaiduAipClient(config = TextToSpeechConfig), C
     public val default: SpeechOption get() = TextToSpeechConfig.option
 
     @JvmBlockingBridge
-    @JvmOverloads
-    public suspend fun speech(text: String, block: SpeechOption.() -> Unit = {}): ByteArray {
-        val option = default.copy().apply(block)
+    public suspend fun speech(text: String, option: SpeechOption): ByteArray {
         return if (ready) {
             aip.handle(text = text, option = option)
         } else {
             free.handle(text = text, option = option)
         }
+    }
+
+    @JvmBlockingBridge
+    public suspend fun speech(text: String): ByteArray {
+        return speech(text = text, option = default)
+    }
+
+    @JvmBlockingBridge
+    public suspend fun speech(text: String, block: SpeechOption.() -> Unit): ByteArray {
+        return speech(text = text, option = default.copy().apply(block))
     }
 }
