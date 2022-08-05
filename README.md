@@ -52,3 +52,20 @@ mirai {
     * volume: 音量 0~15
     * person: 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 106, 4100, 4106`
     * format: 格式
+
+### 示例代码
+
+* [kotlin](src/main/kotlin/xyz/cssxsh/mirai/tts/command/TextToSpeechCommand.kt)
+* [java](src/test/java/xyz/cssxsh/mirai/test/MiraiTTSDemo.java)
+
+## 安装
+
+### MCL 指令安装
+
+**请确认 mcl.jar 的版本是 2.1.0+**  
+`./mcl --update-package xyz.cssxsh.mirai:mirai-tts-plugin --channel maven --type plugin`
+
+### 手动安装
+
+1. 运行 [Mirai Console](https://github.com/mamoe/mirai-console) 生成`plugins`文件夹
+2. 从 [Releases](https://github.com/cssxsh/mirai-tts-plugin/releases) 下载`jar`并将其放入`plugins`文件夹中
