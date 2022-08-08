@@ -1,17 +1,5 @@
 name: Build
-
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push and pull request events but only for the master branch
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
-  # Allows to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [ push, pull_request ]
 
 jobs:
   build:
