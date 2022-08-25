@@ -1,5 +1,6 @@
 package xyz.cssxsh.mirai.tts
 
+import io.ktor.client.utils.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.*
 import me.him188.kotlin.jvm.blocking.bridge.*
@@ -15,13 +16,13 @@ public object MiraiTextToSpeech : BaiduAipClient(config = TextToSpeechConfig), C
 
     override val coroutineContext: CoroutineContext by lazy {
         try {
-            MiraiTextToSpeechPlugin.childScopeContext("BaiduAipContentCensor")
+            MiraiTextToSpeechPlugin.coroutineContext + CoroutineName("MiraiTextToSpeech")
         } catch (_: Throwable) {
             CoroutineExceptionHandler { _, throwable ->
                 if (throwable.unwrapCancellationException() !is CancellationException) {
-                    logger.error("Exception in coroutine BaiduAipContentCensor", throwable)
+                    logger.error("Exception in coroutine MiraiTextToSpeech", throwable)
                 }
-            }.childScopeContext("BaiduAipContentCensor")
+            } + CoroutineName("MiraiTextToSpeech")
         }
     }
     override val status: BaiduAuthStatus get() = TextToSpeechToken
