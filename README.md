@@ -13,7 +13,6 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 没有配置 AIP APP 信息时，将使用百度百科的接口，此接口只支持部分 `person` 。  
 如需要更多的功能选择，请到 [baidu aip](https://ai.baidu.com/ai-doc/SPEECH/qknh9i8ed#%E6%88%90%E4%B8%BA%E5%BC%80%E5%8F%91%E8%80%85)  申请新应用和免费额度。
 
-
 ## 在插件项目中引用
 
 `build.gradle.kt` 示例
@@ -45,14 +44,10 @@ mirai {
 ### [TextToSpeech.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/TextToSpeechConfig.kt)
 
 AIP 应用配置信息 可以在 [百度云控制台](https://console.bce.baidu.com/ai/?fromai=1#/ai/speech/app/list) 找到
-*   `app_name` AIP 配置 
-    应用名称
-*   `app_id` AIP 配置  
-    AppID
-*   `api_key` AIP 配置  
-    API Key
-*   `secret_key` AIP 配置  
-    Secret Key
+*   `app_name` AIP 配置 应用名称  
+*   `app_id` AIP 配置 AppID  
+*   `api_key` AIP 配置 API Key  
+*   `secret_key` AIP 配置 Secret Key  
 *   `option` Speech 配置
     *   `speed` 语速 0~15
     *   `pitch` 语调 0~15
