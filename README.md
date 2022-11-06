@@ -37,6 +37,7 @@ mirai {
     /tts test 4100 5 5 5
     你好 世界
     ```
+
 *   `/tts reload` 重载 aip 配置
 
 ## 配置
@@ -44,10 +45,14 @@ mirai {
 ### [TextToSpeech.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/TextToSpeechConfig.kt)
 
 AIP 应用配置信息 可以在 [百度云控制台](https://console.bce.baidu.com/ai/?fromai=1#/ai/speech/app/list) 找到
-*   `app_name` AIP 配置 应用名称  
-*   `app_id` AIP 配置 AppID  
-*   `api_key` AIP 配置 API Key  
-*   `secret_key` AIP 配置 Secret Key  
+*   `app_name` AIP 配置 应用名称
+
+*   `app_id` AIP 配置 AppID
+
+*   `api_key` AIP 配置 API Key
+
+*   `secret_key` AIP 配置 Secret Key
+
 *   `option` Speech 配置
     *   `speed` 语速 0~15
     *   `pitch` 语调 0~15
