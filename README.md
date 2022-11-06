@@ -15,7 +15,7 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 
 ## 在插件项目中引用
 
-```
+```kotlin
 repositories {
     mavenCentral()
 }
@@ -31,22 +31,22 @@ mirai {
 
 ## 管理指令
 
-* `/tts test <person> <speed> <pitch> <volume>` 测试 tts
+*   `/tts test <person> <speed> <pitch> <volume>` 测试 tts
     ```
     /tts test 4100 5 5 5
     你好 世界
     ```
-* `/tts reload` 重载 aip 配置
+*   `/tts reload` 重载 aip 配置
 
 ## 配置
 
 ### [TextToSpeech.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/TextToSpeechConfig.kt)
 
-* `app_name` AIP 配置
-* `app_id` AIP 配置
-* `api_key` AIP 配置
-* `secret_key` AIP 配置
-* `option` Speech 配置
+*   `app_name` AIP 配置
+*   `app_id` AIP 配置
+*   `api_key` AIP 配置
+*   `secret_key` AIP 配置
+*   `option` Speech 配置
     * speed: 语速 0~15
     * pitch: 语调 0~15
     * volume: 音量 0~15
@@ -55,17 +55,17 @@ mirai {
 
 ### 示例代码
 
-* [kotlin](src/main/kotlin/xyz/cssxsh/mirai/tts/command/TextToSpeechCommand.kt)
-* [java](src/test/java/xyz/cssxsh/mirai/test/MiraiTTSDemo.java)
+*   [kotlin](src/main/kotlin/xyz/cssxsh/mirai/tts/command/TextToSpeechCommand.kt)
+*   [java](src/test/java/xyz/cssxsh/mirai/test/MiraiTTSDemo.java)
 
 ## 安装
 
 ### MCL 指令安装
 
 **请确认 mcl.jar 的版本是 2.1.0+**  
-`./mcl --update-package xyz.cssxsh.mirai:mirai-tts-plugin --channel maven --type plugin`
+`./mcl --update-package xyz.cssxsh.mirai:mirai-tts-plugin --channel maven-stable --type plugin`
 
 ### 手动安装
 
-1. 运行 [Mirai Console](https://github.com/mamoe/mirai-console) 生成`plugins`文件夹
-2. 从 [Releases](https://github.com/cssxsh/mirai-tts-plugin/releases) 下载`jar`并将其放入`plugins`文件夹中
+1.  从 [Releases](https://github.com/cssxsh/mirai-tts-plugin/releases) 或者 [Maven](https://repo1.maven.org/maven2/xyz/cssxsh/mirai/mirai-tts-plugin/) 下载 `mirai2.jar`
+2.  将其放入 `plugins` 文件夹中

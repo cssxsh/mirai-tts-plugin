@@ -1,5 +1,6 @@
 package xyz.cssxsh.mirai.tts.command
 
+import io.ktor.utils.io.errors.*
 import net.mamoe.mirai.console.command.*
 import net.mamoe.mirai.contact.*
 import net.mamoe.mirai.message.data.*
@@ -7,12 +8,22 @@ import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
 import xyz.cssxsh.mirai.tts.*
 import xyz.cssxsh.mirai.tts.data.*
 
+/**
+ * TextToSpeech 测试指令
+ */
 public object TextToSpeechCommand : CompositeCommand(
     owner = MiraiTextToSpeechPlugin,
     "tts",
     description = "TextToSpeech 测试指令"
 ) {
 
+    /**
+     * 测试一段文本
+     * @param person 音库
+     * @param speed 语速
+     * @param pitch 语调
+     * @param volume 音量
+     */
     @SubCommand
     @Description("测试 tts ")
     public suspend fun CommandSenderOnMessage<*>.test(person: Int, speed: Int, pitch: Int, volume: Int) {
@@ -29,14 +40,17 @@ public object TextToSpeechCommand : CompositeCommand(
             }
                 .toExternalResource()
                 .use { receiver.uploadAudio(it) }
-        } catch (cause: Throwable) {
-            logger.error(cause)
+        } catch (cause: IOException) {
+            logger.error("生成语音失败", cause)
             (cause.message ?: cause.toString()).toPlainText()
         }
 
         sendMessage(audio)
     }
 
+    /**
+     * 在修改配置文件之后，需要重新载入 aip 配置
+     */
     @SubCommand
     @Description("重新载入 aip 配置")
     public suspend fun CommandSender.reload() {

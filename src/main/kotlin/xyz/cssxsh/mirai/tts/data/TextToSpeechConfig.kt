@@ -4,7 +4,7 @@ import net.mamoe.mirai.console.data.*
 import xyz.cssxsh.baidu.aip.tts.*
 import xyz.cssxsh.baidu.oauth.*
 
-public object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeech"), BaiduAuthConfig {
+internal object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeech"), BaiduAuthConfig {
     @ValueName("app_name")
     @ValueDescription("百度AI客户端 APP_NAME")
     override val appName: String by value(System.getProperty("xyz.cssxsh.mirai.tts.name", ""))
@@ -23,5 +23,5 @@ public object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeech"), BaiduAu
 
     @ValueName("option")
     @ValueDescription("TTS 选项")
-    public val option: SpeechOption by value(SpeechOption(person = SpeechPerson.Base.MatureFemale))
+    val option: SpeechOption by value(SpeechOption(person = SpeechPerson.Base.MatureFemale))
 }

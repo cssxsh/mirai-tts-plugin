@@ -6,6 +6,11 @@ import io.ktor.http.*
 import xyz.cssxsh.baidu.aip.tts.*
 import xyz.cssxsh.baidu.api.*
 
+/**
+ * 百度百科 TTS 接口
+ * @param client 提供 http 访问
+ * @see xyz.cssxsh.mirai.tts.MiraiTextToSpeech
+ */
 public class FreeTextToSpeech(public val client: BaiduApiClient<*>) {
     public companion object {
         internal const val FREE_TTS = "https://tts.baidu.com/text2audio"
