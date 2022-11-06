@@ -6,6 +6,7 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 
 [![maven-central](https://img.shields.io/maven-central/v/xyz.cssxsh.mirai/mirai-tts-plugin)](https://search.maven.org/artifact/xyz.cssxsh.mirai/mirai-tts-plugin)
 [![Build](https://github.com/cssxsh/mirai-tts-plugin/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/cssxsh/mirai-tts-plugin/actions/workflows/build.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c10823fade1b4a6580ffb08a777c75f0)](https://www.codacy.com/gh/cssxsh/mirai-tts-plugin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cssxsh/mirai-tts-plugin&amp;utm_campaign=Badge_Grade)
 
 本插件使用的TTS API 返回的是 mp3 格式的语音，非手机端接收到语音可能播放不正常,  
 你可以安装 [Mirai Silk Converter](https://github.com/project-mirai/mirai-silk-converter) 进行自动转码，解决mp3格式的问题。  
@@ -15,6 +16,7 @@ Mirai-Console的前置插件，用于将文本转换成语音等
 
 ## 在插件项目中引用
 
+`build.gradle.kt` 示例
 ```kotlin
 repositories {
     mavenCentral()
@@ -32,7 +34,7 @@ mirai {
 ## 管理指令
 
 *   `/tts test <person> <speed> <pitch> <volume>` 测试 tts
-    ```
+    ```text
     /tts test 4100 5 5 5
     你好 世界
     ```
@@ -42,16 +44,21 @@ mirai {
 
 ### [TextToSpeech.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/TextToSpeechConfig.kt)
 
-*   `app_name` AIP 配置
-*   `app_id` AIP 配置
-*   `api_key` AIP 配置
-*   `secret_key` AIP 配置
+AIP 应用配置信息 可以在 [百度云控制台](https://console.bce.baidu.com/ai/?fromai=1#/ai/speech/app/list) 找到
+*   `app_name` AIP 配置 
+    应用名称
+*   `app_id` AIP 配置  
+    AppID
+*   `api_key` AIP 配置  
+    API Key
+*   `secret_key` AIP 配置  
+    Secret Key
 *   `option` Speech 配置
-    * speed: 语速 0~15
-    * pitch: 语调 0~15
-    * volume: 音量 0~15
-    * person: 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 106, 4100, 4106`
-    * format: 格式
+    *   `speed` 语速 0~15
+    *   `pitch` 语调 0~15
+    *   `volume` 音量 0~15
+    *   `person` 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 106, 4100, 4106`
+    *   `format` 格式
 
 ### 示例代码
 

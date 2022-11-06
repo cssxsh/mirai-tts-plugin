@@ -7,7 +7,8 @@ import net.mamoe.mirai.utils.*
 import xyz.cssxsh.mirai.tts.data.*
 import xyz.cssxsh.mirai.tts.command.*
 
-public object MiraiTextToSpeechPlugin : KotlinPlugin(
+@PublishedApi
+internal object MiraiTextToSpeechPlugin : KotlinPlugin(
     JvmPluginDescription("xyz.cssxsh.mirai.plugin.mirai-tts-plugin", "1.0.1") {
         name("mirai-tts-plugin")
         author("cssxsh")
