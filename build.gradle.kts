@@ -27,11 +27,12 @@ repositories {
 }
 
 dependencies {
-    api("xyz.cssxsh.baidu:baidu-aip:3.2.0") {
+    api("xyz.cssxsh.baidu:baidu-aip:3.3.0") {
         exclude(group = "org.jetbrains.kotlin")
         exclude(group = "org.jetbrains.kotlinx")
         exclude(group = "org.slf4j")
     }
+    compileOnly("net.mamoe:mirai-silk-converter:0.0.5")
     //
     testImplementation(kotlin("test"))
     testImplementation("org.slf4j:slf4j-simple:2.0.3")

@@ -16,17 +16,17 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
       # Setup JDK
       - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.3
+        uses: actions/setup-java@v3
         with:
           java-version: 11
       
       # setup FFMPEG
       - name: setup FFMPEG
-        uses: FedericoCarboni/setup-ffmpeg@v1
+        uses: FedericoCarboni/setup-ffmpeg@v2
         id: setup-ffmpeg
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
