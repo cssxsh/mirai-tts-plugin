@@ -22,7 +22,13 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
         TextToSpeechCommand.register()
 
         if (!MiraiTextToSpeech.ready) {
-            logger.warning { "未配置 aip 信息，将使用百度翻译的tts" }
+            logger.warning { "未配置 aip 信息，将使用百度百科的tts" }
+        }
+        try {
+            @OptIn(MiraiExperimentalApi::class)
+            net.mamoe.mirai.silkconverter.SilkConverter::class.java
+        } catch (_: NoClassDefFoundError) {
+            logger.warning { "未安装 https://github.com/project-mirai/mirai-silk-converter 语音将可能直接按 mp3 发送" }
         }
     }
 

@@ -41,6 +41,9 @@ public object TextToSpeechCommand : CompositeCommand(
                 .toExternalResource()
                 .use { receiver.uploadAudio(it) }
         } catch (cause: IOException) {
+            logger.error("上传语音失败", cause)
+            (cause.message ?: cause.toString()).toPlainText()
+        } catch (cause: IllegalStateException) {
             logger.error("生成语音失败", cause)
             (cause.message ?: cause.toString()).toPlainText()
         }

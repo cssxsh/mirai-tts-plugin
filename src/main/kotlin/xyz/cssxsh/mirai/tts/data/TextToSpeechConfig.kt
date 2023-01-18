@@ -4,6 +4,7 @@ import net.mamoe.mirai.console.data.*
 import xyz.cssxsh.baidu.aip.tts.*
 import xyz.cssxsh.baidu.oauth.*
 
+@PublishedApi
 internal object TextToSpeechConfig : ReadOnlyPluginConfig("TextToSpeech"), BaiduAuthConfig {
     @ValueName("app_name")
     @ValueDescription("百度AI客户端 APP_NAME")

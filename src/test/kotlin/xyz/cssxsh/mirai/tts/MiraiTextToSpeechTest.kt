@@ -33,7 +33,7 @@ internal class MiraiTextToSpeechTest {
                 } catch (exception: SpeechException) {
                     logger.warning("${example.name} 不支持， ${exception.message}")
                     continue
-                } catch (cause: Throwable) {
+                } catch (cause: Exception) {
                     logger.error(cause)
                     continue
                 }
@@ -45,7 +45,7 @@ internal class MiraiTextToSpeechTest {
                     mp3.toExternalResource()
                         .use { AudioToSilkService.convert(it) }
                         .use { silk.writeBytes(it.inputStream().readAllBytes()) }
-                } catch (cause: Throwable) {
+                } catch (cause: Exception) {
                     logger.error(cause)
                     throw cause
                 }
