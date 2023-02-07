@@ -34,8 +34,10 @@ dependencies {
     //
     implementation(platform("net.mamoe:mirai-bom:2.14.0-RC"))
     compileOnly("net.mamoe:mirai-console-compiler-common")
+    testImplementation("net.mamoe:mirai-logging-slf4j")
     //
     implementation(platform("org.slf4j:slf4j-parent:2.0.6"))
+    testImplementation("org.slf4j:slf4j-simple")
 }
 
 kotlin {
