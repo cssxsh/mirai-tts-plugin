@@ -70,9 +70,13 @@ AIP 应用配置信息 可以在 [百度云控制台](https://console.bce.baidu.
 ### MCL 指令安装
 
 **请确认 mcl.jar 的版本是 2.1.0+**  
-`./mcl --update-package xyz.cssxsh.mirai:mirai-tts-plugin --channel maven-stable --type plugin`
+`./mcl --update-package xyz.cssxsh.mirai:mirai-tts-plugin --channel maven-stable --type plugins`
 
 ### 手动安装
 
 1.  从 [Releases](https://github.com/cssxsh/mirai-tts-plugin/releases) 或者 [Maven](https://repo1.maven.org/maven2/xyz/cssxsh/mirai/mirai-tts-plugin/) 下载 `mirai2.jar`
 2.  将其放入 `plugins` 文件夹中
+
+## [爱发电](https://afdian.net/@cssxsh)
+
+![afdian](.github/afdian.jpg)
