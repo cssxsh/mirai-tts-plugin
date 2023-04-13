@@ -21,6 +21,9 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
         TextToSpeechToken.reload()
         TextToSpeechCommand.register()
 
+        VitsConfig.reload()
+        VitsCommand.register()
+
         if (!MiraiTextToSpeech.ready) {
             logger.warning { "未配置 aip 信息，将使用百度百科的tts" }
         }
@@ -34,5 +37,6 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
 
     override fun onDisable() {
         TextToSpeechCommand.unregister()
+        VitsCommand.unregister()
     }
 }

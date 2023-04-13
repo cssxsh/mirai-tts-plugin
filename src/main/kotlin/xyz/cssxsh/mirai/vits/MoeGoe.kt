@@ -17,7 +17,7 @@ public open class MoeGoe(private val model: String, private val config: String) 
 
     init {
         logger.debug("init...")
-        val binary = System.getProperty("xyz.cssxsh.mirai.vits.moggoe.home", "MoeGoe")
+        val binary = System.getProperty("xyz.cssxsh.mirai.vits.moegoe", "MoeGoe")
         process = ProcessBuilder(binary)
             .redirectErrorStream(true)
             .start()
@@ -28,7 +28,7 @@ public open class MoeGoe(private val model: String, private val config: String) 
         logger.debug("speakers: $speakers")
         launch {
             val reader = process.inputStream.reader()
-            val charsetName = System.getProperty("xyz.cssxsh.mirai.vits.moggoe.charset", "GBK")
+            val charsetName = System.getProperty("xyz.cssxsh.mirai.vits.moegoe.charset", "GBK")
             val writer = process.outputStream.writer(Charset.forName(charsetName))
             val buffer = CharArray(128)
 
@@ -70,7 +70,6 @@ public open class MoeGoe(private val model: String, private val config: String) 
 
     override fun close() {
         process.destroy()
-        mutex.unlock()
     }
 
     public suspend fun tts(text: String, id: Int): File {
