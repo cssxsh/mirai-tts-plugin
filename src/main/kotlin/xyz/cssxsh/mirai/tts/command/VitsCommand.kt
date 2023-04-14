@@ -19,17 +19,18 @@ public object VitsCommand : CompositeCommand(
 
     /**
      * 测试一段文本
+     * @param model 模型
      * @param speaker 音库
      */
     @SubCommand
     @Description("测试 moegoe")
-    public suspend fun CommandSenderOnMessage<*>.moe(speaker: String) {
+    public suspend fun CommandSenderOnMessage<*>.moe(model: String, speaker: String) {
         val receiver = subject as? AudioSupported ?: return
 
         val text = fromEvent.message.contentToString().substringAfter('\n')
 
         val audio = try {
-            MiraiVits.moe(uuid = "default")
+            MiraiVits.moe(uuid = model)
                 .use { vits -> vits.tts(text = text, speaker = speaker) }
                 .toExternalResource()
                 .use { receiver.uploadAudio(it) }
