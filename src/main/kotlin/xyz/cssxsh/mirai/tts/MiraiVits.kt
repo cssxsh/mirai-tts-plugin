@@ -35,9 +35,21 @@ public object MiraiVits : CoroutineScope {
     @Synchronized
     public fun moe(uuid: String): MoeGoe {
         val target = folder.resolve(uuid)
-        val model = target.resolve("G_latest.pth").path
-        val config = target.resolve("moegoe_config.json").path
-        return object : MoeGoe(model = model, config = config) {
+        val model = kotlin.run {
+            val latest = target.resolve("G_latest.pth")
+            if (latest.exists()) return@run latest
+            target
+                .listFiles { _, name -> name.endsWith(".pth") }
+                ?.firstOrNull() ?: throw NoSuchElementException("G_latest.pth")
+        }
+        val config = kotlin.run {
+            val latest = target.resolve("moegoe_config.json")
+            if (latest.exists()) return@run latest
+            target
+                .listFiles { _, name -> name.endsWith(".json") }
+                ?.firstOrNull() ?: throw NoSuchElementException("config.json")
+        }
+        return object : MoeGoe(model = model.path, config = config.path) {
             override val coroutineContext: CoroutineContext get() = this@MiraiVits.coroutineContext
         }
     }
