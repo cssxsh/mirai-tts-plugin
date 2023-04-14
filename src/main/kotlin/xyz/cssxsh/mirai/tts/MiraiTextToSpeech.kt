@@ -19,14 +19,14 @@ public object MiraiTextToSpeech : BaiduAipClient(config = TextToSpeechConfig), C
 
     override val coroutineContext: CoroutineContext by lazy {
         try {
-            MiraiTextToSpeechPlugin.coroutineContext + CoroutineName("MiraiTextToSpeech")
+            MiraiTextToSpeechPlugin.coroutineContext
         } catch (_: UninitializedPropertyAccessException) {
             CoroutineExceptionHandler { _, throwable ->
                 if (throwable.unwrapCancellationException() !is CancellationException) {
                     logger.error("Exception in coroutine MiraiTextToSpeech", throwable)
                 }
-            } + CoroutineName("MiraiTextToSpeech")
-        }
+            }
+        } + CoroutineName("MiraiTextToSpeech")
     }
     override val status: BaiduAuthStatus get() = TextToSpeechToken
     override val apiIgnore: suspend (Throwable) -> Boolean = { throwable ->

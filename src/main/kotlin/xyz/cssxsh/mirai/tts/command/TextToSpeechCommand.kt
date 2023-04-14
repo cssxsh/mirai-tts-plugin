@@ -25,7 +25,7 @@ public object TextToSpeechCommand : CompositeCommand(
      * @param volume 音量
      */
     @SubCommand
-    @Description("测试 tts ")
+    @Description("测试 tts")
     public suspend fun CommandSenderOnMessage<*>.test(person: Int, speed: Int, pitch: Int, volume: Int) {
         val receiver = subject as? AudioSupported ?: return
 
