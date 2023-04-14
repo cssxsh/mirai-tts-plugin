@@ -47,6 +47,7 @@ mirai {
 *   `/vits moe <model> <speaker>`
     ```log
     /vits moe arknights 阿米娅
+    [JA] はあなたが大好きです [JA]
     ```
     
 *   `/vits reload` 重载 Vits 配置
