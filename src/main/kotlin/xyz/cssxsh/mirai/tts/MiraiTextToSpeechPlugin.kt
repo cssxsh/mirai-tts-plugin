@@ -23,6 +23,7 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
 
         VitsConfig.reload()
         VitsCommand.register()
+        MiraiTextToSpeechPlugin.resolveDataFile("vits").mkdirs()
 
         if (!MiraiTextToSpeech.ready) {
             logger.warning { "未配置 aip 信息，将使用百度百科的tts" }

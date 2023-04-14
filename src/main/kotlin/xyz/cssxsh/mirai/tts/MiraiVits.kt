@@ -29,7 +29,7 @@ public object MiraiVits : CoroutineScope {
             MiraiTextToSpeechPlugin.resolveDataFile("vits")
         } catch (_: UninitializedPropertyAccessException) {
             File("debug-sandbox")
-        }.apply { mkdirs() }
+        }
     }
 
     @Synchronized
