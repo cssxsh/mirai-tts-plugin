@@ -32,6 +32,10 @@ public object MiraiVits : CoroutineScope {
         }
     }
 
+    /**
+     * 构建一个 MoeGoe 进程
+     * @param uuid 模型ID (实际上是模型文件夹名)
+     */
     @Synchronized
     public fun moe(uuid: String): MoeGoe {
         val target = folder.resolve(uuid)

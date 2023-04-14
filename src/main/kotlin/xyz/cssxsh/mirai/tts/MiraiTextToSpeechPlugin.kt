@@ -13,7 +13,7 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
         name("mirai-tts-plugin")
         author("cssxsh")
 
-        dependsOn("net.mamoe.mirai-silk-converter", true)
+        dependsOn("net.mamoe.mirai-silk-converter", ">= 0.0.6", true)
     }
 ) {
     override fun onEnable() {
@@ -32,7 +32,7 @@ internal object MiraiTextToSpeechPlugin : KotlinPlugin(
             @OptIn(MiraiExperimentalApi::class)
             net.mamoe.mirai.silkconverter.SilkConverter::class.java
         } catch (_: NoClassDefFoundError) {
-            logger.warning { "未安装 https://github.com/project-mirai/mirai-silk-converter 语音将可能直接按 mp3 发送" }
+            logger.warning { "未安装 https://github.com/project-mirai/mirai-silk-converter 语音将可能直接按 mp3/wav 发送" }
         }
     }
 
