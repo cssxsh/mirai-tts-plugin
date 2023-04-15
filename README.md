@@ -73,7 +73,7 @@ AIP 应用配置信息 可以在 [百度云控制台](https://console.bce.baidu.
     *   `person` 音库 详见 [demo](example/demo.json), 百度百科的接口只支持 `0, 1, 3, 106, 4100, 4106`
     *   `format` 格式
 
-### [VitsConfig.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/VitsConfig.kt)
+### [Vits.yml](src/main/kotlin/xyz/cssxsh/mirai/tts/data/VitsConfig.kt)
 
 Vits 配置信息, 其中 [MoeGoe](https://github.com/CjangCjengh/MoeGoe/releases/latest) 请自行下载并解压
 
