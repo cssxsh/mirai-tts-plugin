@@ -9,7 +9,7 @@ import xyz.cssxsh.mirai.tts.command.*
 
 @PublishedApi
 internal object MiraiTextToSpeechPlugin : KotlinPlugin(
-    JvmPluginDescription("xyz.cssxsh.mirai.plugin.mirai-tts-plugin", "1.1.0") {
+    JvmPluginDescription("xyz.cssxsh.mirai.plugin.mirai-tts-plugin", "1.1.1") {
         name("mirai-tts-plugin")
         author("cssxsh")
 
