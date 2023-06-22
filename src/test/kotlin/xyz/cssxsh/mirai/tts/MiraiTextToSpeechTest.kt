@@ -5,6 +5,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import net.mamoe.mirai.silkconverter.SilkConverter
 import net.mamoe.mirai.spi.AudioToSilkService
+import net.mamoe.mirai.utils.Services
 import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
 import net.mamoe.mirai.utils.MiraiExperimentalApi
 import org.junit.jupiter.api.Test
@@ -15,8 +16,12 @@ import java.io.File
 internal class MiraiTextToSpeechTest {
 
     init {
-        AudioToSilkService.setService(SilkConverter())
-        File("./test").mkdirs()
+        Services.register(
+            "net.mamoe.mirai.spi.AudioToSilkService",
+            "net.mamoe.mirai.silkconverter.SilkConverterImpl",
+            ::SilkConverter
+        )
+        File("./run").mkdirs()
     }
 
     private val demo: List<List<DemoExample>> = Json.decodeFromString(File("./example/demo.json").readText())
@@ -37,13 +42,13 @@ internal class MiraiTextToSpeechTest {
                     logger.error(cause)
                     continue
                 }
-                val mp3 = File("./test/${example.name}-${example.person}.mp3")
+                val mp3 = File("./run/${example.name}-${example.person}.mp3")
                 mp3.writeBytes(result)
 
-                val silk = File("./test/${example.name}-${example.person}.silk")
+                val silk = File("./run/${example.name}-${example.person}.silk")
                 try {
                     mp3.toExternalResource()
-                        .use { AudioToSilkService.convert(it) }
+                        .use { AudioToSilkService.instance.convert(it) }
                         .use { silk.writeBytes(it.inputStream().readAllBytes()) }
                 } catch (cause: Exception) {
                     logger.error(cause)

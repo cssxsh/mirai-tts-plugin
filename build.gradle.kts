@@ -1,14 +1,14 @@
 plugins {
-    kotlin("jvm") version "1.7.22"
-    kotlin("plugin.serialization") version "1.7.22"
+    kotlin("jvm") version "1.8.10"
+    kotlin("plugin.serialization") version "1.8.10"
 
-    id("net.mamoe.mirai-console") version "2.14.0"
+    id("net.mamoe.mirai-console") version "2.15.0-RC"
     id("me.him188.maven-central-publish") version "1.0.0-dev-3"
     id("me.him188.kotlin-jvm-blocking-bridge") version "2.2.0-172.1"
 }
 
 group = "xyz.cssxsh.mirai"
-version = "1.1.1"
+version = "1.1.2"
 
 mavenCentralPublish {
     useCentralS01()
@@ -32,11 +32,12 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation("net.mamoe:mirai-silk-converter:0.0.5")
     //
-    implementation(platform("net.mamoe:mirai-bom:2.14.0"))
+    implementation(platform("net.mamoe:mirai-bom:2.15.0-RC"))
+    testImplementation("net.mamoe:mirai-core-utils")
     testImplementation("net.mamoe:mirai-console-compiler-common")
     testImplementation("net.mamoe:mirai-logging-slf4j")
     //
-    implementation(platform("org.slf4j:slf4j-parent:2.0.6"))
+    implementation(platform("org.slf4j:slf4j-parent:2.0.7"))
     testImplementation("org.slf4j:slf4j-simple")
 }
 

@@ -9,11 +9,11 @@ import xyz.cssxsh.mirai.tts.command.*
 
 @PublishedApi
 internal object MiraiTextToSpeechPlugin : KotlinPlugin(
-    JvmPluginDescription("xyz.cssxsh.mirai.plugin.mirai-tts-plugin", "1.1.1") {
+    JvmPluginDescription("xyz.cssxsh.mirai.plugin.mirai-tts-plugin", "1.1.2") {
         name("mirai-tts-plugin")
         author("cssxsh")
 
-        dependsOn("net.mamoe.mirai-silk-converter", ">= 0.0.6", true)
+        dependsOn("net.mamoe.mirai-silk-converter", "> 0.0.5", true)
     }
 ) {
     override fun onEnable() {
